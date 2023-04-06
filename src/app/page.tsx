@@ -1,10 +1,25 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from './page.module.css'
+"use client";
 
-const inter = Inter({ subsets: ['latin'] })
+import { useEffect } from "react";
+import Image from "next/image";
+import { Inter } from "next/font/google";
+import styles from "./page.module.css";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  useEffect(() => {
+    fetch("/test", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        hello: 123,
+      }),
+    });
+  }, []);
+
   return (
     <main className={styles.main}>
       <div className={styles.description}>
@@ -18,7 +33,7 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            By{' '}
+            By{" "}
             <Image
               src="/vercel.svg"
               alt="Vercel Logo"
@@ -87,5 +102,5 @@ export default function Home() {
         </a>
       </div>
     </main>
-  )
+  );
 }
